@@ -1,0 +1,482 @@
+/* --- Variáveis de Escopo Global & Design System --- */
+:root {
+    --primary-blue: #0A2540;
+    --sky-blue: #639FAB;
+    --metallic-blue: #2B4C7E;
+    --pure-white: #FFFFFF;
+    --soft-gray: #F8F9FA;
+    --accent-green: #2E7D32;
+    --accent-yellow: #FBC02D;
+    --gold-color: #D4AF37;
+    --dark-black: #121212;
+    
+    --font-heading: 'Syne', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Configurações Fluidas usando clamp() */
+    --padding-global: clamp(1.5rem, 5vw, 5rem);
+    --radius-standard: 12px;
+    --radius-round: 50px;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-subtle: 0 4px 30px rgba(0, 0, 0, 0.05);
+    --shadow-bold: 0 20px 40px rgba(10, 37, 64, 0.1);
+    
+    --base-font-size: 100%; /* Controlado pelo JS de acessibilidade */
+}
+
+/* --- Resets Gerais & Acessibilidade Básica --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: var(--base-font-size);
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--pure-white);
+    color: var(--primary-blue);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- Barra de Ferramentas de Acessibilidade --- */
+.accessibility-bar {
+    background-color: var(--primary-blue);
+    border-bottom: 2px solid var(--sky-blue);
+    padding: 0.5rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.accessibility-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+.accessibility-container button {
+    background: transparent;
+    border: 1px solid var(--sky-blue);
+    color: var(--pure-white);
+    padding: 0.4rem 0.8rem;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.accessibility-container button:hover, 
+.accessibility-container button:focus {
+    background-color: var(--sky-blue);
+    color: var(--primary-blue);
+    outline: none;
+}
+
+/* --- Cabeçalho --- */
+.main-header {
+    background-color: transparent;
+    padding: 1.5rem var(--padding-global);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--primary-blue);
+}
+
+.logo span {
+    color: var(--accent-green);
+}
+
+.btn-primary-header {
+    background-color: var(--metallic-blue);
+    color: var(--pure-white);
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: var(--radius-round);
+    transition: var(--transition-smooth);
+}
+
+.btn-primary-header:hover {
+    background-color: var(--primary-blue);
+    transform: translateY(-2px);
+}
+
+/* --- Estrutura de Layout e Seções --- */
+.hero-section {
+    padding: 2rem var(--padding-global) var(--padding-global);
+}
+
+.hero-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.badge {
+    display: inline-block;
+    background-color: rgba(46, 125, 50, 0.1);
+    color: var(--accent-green);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-round);
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.hero-text-content p {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    color: #4A5568;
+    max-width: 650px;
+}
+
+/* Espaços Reservados para Imagens */
+.placeholder-image {
+    background-color: #E2E8F0;
+    border: 3px dashed var(--sky-blue);
+    border-radius: var(--radius-standard);
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    box-shadow: var(--shadow-subtle);
+}
+
+.image-label {
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: var(--metallic-blue);
+    font-size: 1rem;
+}
+
+/* Artigo Técnico */
+.article-section {
+    background-color: var(--soft-gray);
+    padding: var(--padding-global);
+}
+
+.article-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 4vw, 2.75rem);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.article-container p {
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+    color: #2D3748;
+}
+
+.highlight-quote {
+    border-left: 5px solid var(--gold-color);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    background-color: rgba(212, 175, 55, 0.08);
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+}
+
+/* Seção de Funcionalidades e Formulário */
+.features-section {
+    padding: var(--padding-global);
+}
+
+.features-layout-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.section-intro {
+    font-size: 1.15rem;
+    margin-bottom: 2rem;
+}
+
+.inline-image {
+    min-height: 250px;
+    margin-bottom: 2.5rem;
+}
+
+/* --- Componente do Acordeão Dinâmico --- */
+.accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.accordion-item {
+    border: 1px solid #E2E8F0;
+    border-radius: var(--radius-standard);
+    overflow: hidden;
+    background-color: var(--pure-white);
+    box-shadow: var(--shadow-subtle);
+    transition: var(--transition-smooth);
+}
+
+.accordion-header-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition-smooth);
+}
+
+.accordion-header-btn:hover,
+.accordion-header-btn:focus {
+    background-color: rgba(99, 159, 171, 0.05);
+    outline: none;
+}
+
+.accordion-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-color: var(--soft-gray);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-icon {
+    transform: rotate(45deg);
+    background-color: var(--accent-green);
+    color: var(--pure-white);
+}
+
+.accordion-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+    padding: 0 1.5rem;
+    background-color: rgba(248, 249, 250, 0.5);
+    color: #4A5568;
+    font-size: 1.05rem;
+}
+
+.accordion-item.active .accordion-panel {
+    padding: 1rem 1.5rem 1.5rem;
+}
+
+/* --- Caixa de Interação à Direita (Formulário) --- */
+.sidebar-form-container {
+    position: sticky;
+    top: 100px;
+}
+
+.sticky-form-box {
+    background-color: var(--pure-white);
+    border: 2px solid var(--primary-blue);
+    padding: 2.5rem;
+    border-radius: var(--radius-standard);
+    box-shadow: var(--shadow-bold);
+}
+
+.sticky-form-box h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+}
+
+.sticky-form-box p {
+    font-size: 0.95rem;
+    color: #4A5568;
+    margin-bottom: 2rem;
+}
+
+/* Elementos do Formulário */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.form-grid-inputs {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
+}
+
+label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--metallic-blue);
+    box-shadow: 0 0 0 3px rgba(43, 76, 126, 0.15);
+}
+
+.error-msg {
+    color: #D32F2F;
+    font-size: 0.8rem;
+    display: none;
+}
+
+input.invalid {
+    border-color: #D32F2F;
+    background-color: #FFEBEE;
+}
+
+input.invalid + .error-msg {
+    display: block;
+}
+
+.btn-submit-form {
+    width: 100%;
+    background-color: var(--accent-green);
+    color: var(--pure-white);
+    border: none;
+    padding: 1rem;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    margin-top: 1rem;
+}
+
+.btn-submit-form:hover {
+    background-color: #1B5E20;
+    transform: translateY(-2px);
+}
+
+.success-alert {
+    display: none;
+    background-color: #E8F5E9;
+    color: var(--accent-green);
+    border: 1px solid var(--accent-green);
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Galeria Final */
+.gallery-section {
+    padding: 0 var(--padding-global) var(--padding-global);
+}
+
+.wide-image {
+    min-height: 400px;
+}
+
+/* --- Rodapé --- */
+.main-footer {
+    background-color: var(--dark-black);
+    color: var(--pure-white);
+    padding: 2rem var(--padding-global);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.main-footer a {
+    color: var(--sky-blue);
+    text-decoration: none;
+}
+
+/* --- Media Queries Responsivas (Layout Fluido) --- */
+@media (max-width: 1024px) {
+    .hero-grid, .features-layout-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .sidebar-form-container {
+        position: static;
+    }
+}
+
+@media (max-width: 550px) {
+    .form-grid-inputs {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- CSS de Blindagem para Alto Contraste Obrigatório --- */
+body.high-contrast,
+body.high-contrast *:not(i):not(.icon) {
+    background-color: #000 !important;
+    color: #fff !important;
+    border: 1px solid #ff0 !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
